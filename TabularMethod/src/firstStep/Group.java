@@ -41,7 +41,9 @@ public class Group {
 				{
 					Implicant imp = new Implicant(a.get(i));
 					a.get(i).check = true;
+					imp.check = false;
 					imp.difs.add(new Integer(diff));
+					Collections.sort(imp.difs);
 					res.add(imp);
 				}
 			}
@@ -49,6 +51,22 @@ public class Group {
 		return res;
 	}
 	
+	public void removeDuplicate()
+	{
+		for(int i = 0;i < size;i++)
+		{
+			for(int j = i+1;j < size;j++)
+			{
+				if(this.get(i).equals(this.get(j)))
+				{
+					this.remove(i);
+				}
+			}
+		}
+	}
+	private void remove(int i) {
+		myGroup.remove(i);
+	}
 	public static boolean compareDifs(Implicant a,Implicant b)
 	{
 		Collections.sort(a.difs);
