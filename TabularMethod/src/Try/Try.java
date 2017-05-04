@@ -1,5 +1,9 @@
 package Try;
 
+import java.util.LinkedList;
+
+import firstStep.GenerateCols;
+import firstStep.Implicant;
 import firstStep.MyTabular;
 import interFaces.Tabular;
 
@@ -7,16 +11,39 @@ public class Try {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
+		/* MyTabular tab = new MyTabular();
+		 tab.setNumOfVariables(4);
+		 tab.setMinterms("0, 1, 2, 3, 4,4,4,4,4,6,6,6,6,6,6,6,6,6,6, 7, 8, 9,10, 11,12,13,14,15", "5");
+		 for (int i = 0; i <= 4; i++) {
+		 System.out.print("Group ( " + i + " ) : ");
+		 for (int j = 0; j <= 5; j++) {
+		 try {
+		 System.out.print(tab.group0.colGroups.get(i).myGroup.get(j).num + " ");
+		 } catch (Exception e) {
 		
-		MyTabular tab = new MyTabular();
-		tab.setNumOfVariables(3);
-		tab.setMinterms("0,1 , 2 , 3  , 4 , 5 ,  6  ");
-		System.out.println(tab.groups.get(2).myGroup.get(0).num);
-//		System.out.println(tab.minTerms[0][0]);
-//		System.out.println(tab.minTerms[1][0] + " " + tab.minTerms[1][1] + " " + tab.minTerms[1][2]);
-//		System.out.println(tab.minTerms[2][0] + " " + tab.minTerms[2][1]+ " " + tab.minTerms[2][2]);
-//		System.out.println(tab.minTerms[3][0]);
-		// System.out.println(tab.implicants.get(3).minTerm.get(0));
+		 }
+		 }
+		 System.out.println();
+		 }
+		 System.out.print("minterms = ");
+		 for (int i = 0; i < tab.minTerms.size(); i++) {
+		 System.out.print(tab.minTerms.get(i) + " ");
+		 }*/
+		GenerateCols tab2 = new GenerateCols();
+		tab2.generate(3, "1,2,3,5", " ");
+		LinkedList<Implicant> impls = tab2.getImplicants();
+		for (int i = 0; i < impls.size(); i++) {
+			System.out.print(impls.get(i).num + " ");	
+			for (int j = 0; j < impls.get(i).difs.size(); j++) {
+				try {
+					System.out.print(impls.get(i).difs.get(j) + " " );
+				} catch (Exception e) {
+
+				}
+			}
+			System.out.println();
+		}
 	}
 
 }

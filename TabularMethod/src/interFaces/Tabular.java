@@ -13,13 +13,5 @@ public interface Tabular {
 	 * 
 	 * @param minterms
 	 */
-	public void setMinterms(String minterms);
-
-	/**
-	 * set dont cares
-	 * 
-	 * @param dontCares
-	 */
-	public void setDontCares(String dontCares);
-	
+	public void setMinterms(String minterms, String dontcares);
 }

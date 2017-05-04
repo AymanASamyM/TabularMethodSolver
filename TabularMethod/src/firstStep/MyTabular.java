@@ -1,13 +1,15 @@
 package firstStep;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
 import interFaces.Tabular;
 
 public class MyTabular implements Tabular {
-	private int num;
-	public LinkedList<Group> groups = new LinkedList<Group>();
-	
+	public int num;
+	public col group0 = new col();
+	public LinkedList<Integer> minTerms = new LinkedList<Integer>();
+
 	@Override
 	public void setNumOfVariables(int num) {
 		// TODO Auto-generated method stub
@@ -15,12 +17,15 @@ public class MyTabular implements Tabular {
 	}
 
 	@Override
-	public void setMinterms(String minterms) {
+	public void setMinterms(String minterms, String dontcares) {
 		// TODO Auto-generated method stub
+		int flag = minterms.length();
 		Group[] impls = new Group[num + 1];
 		for (int i = 0; i <= num; i++) {
 			impls[i] = new Group();
 		}
+		minterms += "," + dontcares;
+		LinkedList<Integer> numbers = new LinkedList<Integer>();
 		for (int i = 0; i < minterms.length(); i++) {
 			char z = minterms.charAt(i);
 			StringBuilder c = new StringBuilder();
@@ -32,12 +37,25 @@ public class MyTabular implements Tabular {
 				}
 				z = minterms.charAt(i);
 			}
-			int impl = -1, tmp = 0;
 			if (c != null && c.length() != 0) {
-				impl = Integer.parseInt(c.toString());
-				c = null;
-				tmp = impl;
+				numbers.add(Integer.parseInt(c.toString()));
+				if (i <= flag) {
+					minTerms.add(Integer.parseInt(c.toString()));
+				}
 			}
+		}
+		Collections.sort(numbers);
+		for (int i = 0; i < numbers.size() - 1; i++) {
+			if (numbers.get(i).equals(numbers.get(i + 1))) {
+				numbers.remove(i + 1);
+				if (i < flag ) {
+					minTerms.remove(i);
+				}
+				i--;
+			}
+		}
+		for (int i = 0; i < numbers.size(); i++) {
+			int impl = numbers.get(i), tmp = impl;
 			int numOfOnes = 0;
 			if (impl == -1) {
 				continue;
@@ -48,19 +66,12 @@ public class MyTabular implements Tabular {
 			}
 			Implicant minterm = new Implicant();
 			minterm.num = impl;
-			impls[numOfOnes].myGroup.add(minterm);
+			impls[numOfOnes].add(minterm);
 		}
 		for (int i = 0; i <= num; i++) {
 			if (impls[i].myGroup.size() != 0) {
-				groups.add(impls[i]);
+				group0.colGroups.add(impls[i]);
 			}
 		}
 	}
-
-	@Override
-	public void setDontCares(String dontcares) {
-		// TODO Auto-generated method stub
-		setMinterms(dontcares);
-	}
-
 }
