@@ -8,6 +8,7 @@ import firstStep.Implicant;
 public class Group {
 	public LinkedList<Implicant> myGroup = new LinkedList<Implicant>();
 	public int size = 0;
+	public static boolean mergeFlag = false;
 
 	public void add(Implicant imp) {
 		myGroup.add(imp);
@@ -29,6 +30,7 @@ public class Group {
 
 	public static Group merge(Group a, Group b) {
 		Group res = new Group();
+		mergeFlag = false;
 		for (int i = 0; i < a.size; i++) {
 			for (int j = 0; j < b.size; j++) {
 				int diff = b.get(j).num - a.get(i).num;
@@ -42,6 +44,7 @@ public class Group {
 					imp.difs.add(new Integer(diff));
 					Collections.sort(imp.difs);
 					res.add(imp);
+					mergeFlag = true;
 				}
 			}
 		}
@@ -51,9 +54,9 @@ public class Group {
 
 	public void removeDuplicate() {
 		for (int i = 0; i < size; i++) {
-			for (int j = i + 1; j < size; j++) {
-				if (this.get(i).equals(this.get(j))) {
-					this.remove(i);
+			for (int j = 0; j < size; j++) {
+				if (this.get(i).equals(this.get(j)) && i != j) {
+					this.remove(j);
 				}
 			}
 		}
@@ -61,6 +64,7 @@ public class Group {
 
 	private void remove(int i) {
 		myGroup.remove(i);
+		size--;
 	}
 
 	public static boolean compareDifs(Implicant a, Implicant b) {
@@ -81,7 +85,7 @@ public class Group {
 	public LinkedList<Implicant> checker() {
 		LinkedList<Implicant> tmp = new LinkedList<Implicant>();
 		for (int i = 0; i < myGroup.size(); i++) {
-			if (!myGroup.get(i).check){
+			if (!myGroup.get(i).check) {
 				tmp.add(myGroup.get(i));
 			}
 		}
