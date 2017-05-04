@@ -7,10 +7,7 @@ import interFaces.Tabular;
 public class MyTabular implements Tabular {
 	private int num;
 	public LinkedList<Group> groups = new LinkedList<Group>();
-	// public int[][] minTerms = new int [4][3];
-	// public int[] dontCares;
-	// public LinkedList<Implicants> implicants = new LinkedList<Implicants>();
-
+	
 	@Override
 	public void setNumOfVariables(int num) {
 		// TODO Auto-generated method stub
