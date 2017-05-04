@@ -1,4 +1,4 @@
-package Try;
+package firstStep;
 
 import java.util.LinkedList;
 

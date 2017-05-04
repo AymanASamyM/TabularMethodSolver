@@ -6,17 +6,16 @@ import interFaces.Tabular;
 
 public class MyTabular implements Tabular {
 	private int num;
-	@SuppressWarnings("unchecked")
-	public LinkedList<Integer>[] minTerms = new LinkedList[3 + 1];
+	public LinkedList<Integer>[] implicant;
 //	public int[][] minTerms = new int [4][3];
-	public int[] dontCares;
+//	public int[] dontCares;
 	// public LinkedList<Implicants> implicants = new LinkedList<Implicants>();
 
 	@Override
 	public void setNumOfVariables(int num) {
 		// TODO Auto-generated method stub
 		this.num = num;
-		// minTerms = new LinkedList[num + 1];
+		
 	}
 
 	@Override
@@ -49,10 +48,10 @@ public class MyTabular implements Tabular {
 				j++;
 			}
 //			minTerms[numOfOnes][j] = impl;
-			Implicants minterm = new Implicants();
+			Implicant minterm = new Implicant();
 //			minTerms[numOfOnes] = minterm.minTerm;
 		}
-	}
+	
 
 	@Override
 	public void setDontCares(String dontcares) {
