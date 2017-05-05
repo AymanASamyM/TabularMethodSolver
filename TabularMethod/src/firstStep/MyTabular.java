@@ -38,6 +38,14 @@ public class MyTabular implements Tabular {
 				z = minterms.charAt(i);
 			}
 			if (c != null && c.length() != 0) {
+				if (Integer.parseInt(c.toString()) >= (int) Math.pow(2, num)) {
+					try {
+						throw new Exception("un valid minterm");
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				numbers.add(Integer.parseInt(c.toString()));
 				if (i <= flag) {
 					minTerms.add(Integer.parseInt(c.toString()));
@@ -48,7 +56,7 @@ public class MyTabular implements Tabular {
 		for (int i = 0; i < numbers.size() - 1; i++) {
 			if (numbers.get(i).equals(numbers.get(i + 1))) {
 				numbers.remove(i + 1);
-				if (i < flag ) {
+				if (i < flag) {
 					minTerms.remove(i);
 				}
 				i--;
