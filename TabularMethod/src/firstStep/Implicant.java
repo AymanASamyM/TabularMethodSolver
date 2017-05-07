@@ -27,15 +27,6 @@ public class Implicant {
 		difs = new LinkedList<Integer>(imp.difs);
 	}
 
-	public LinkedList<Integer> cover() {
-		LinkedList<Integer> res = new LinkedList<Integer>();
-		res.add(new Integer(num));
-		for (int i = 0; i < difs.size(); i++) {
-			res.add(new Integer(difs.get(i).intValue() + num));
-		}
-		return res;
-	}
-
 	@Override
 	public boolean equals(Object arg0) {
 		Implicant imp = (Implicant) arg0;
@@ -54,4 +45,5 @@ public class Implicant {
 			}
 		}
 	}
+	
 }
