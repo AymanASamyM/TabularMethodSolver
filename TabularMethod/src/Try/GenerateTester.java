@@ -24,7 +24,7 @@ public class GenerateTester {
 		for (int i = 0; i < num.length; i++) {
 			dif[i] = new LinkedList<Integer>();
 		}
-		int[] minTerms = { 0, 1, 4, 5, 6, 9, 7, 11, 15 };
+		int[] minTerms = { 0, 1, 4, 5, 6, 7, 9, 11, 15 };
 		dif[0].add(8);
 		dif[1].add(2);
 		dif[2].add(1);	dif[2].add(4);		

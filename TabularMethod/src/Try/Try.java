@@ -25,7 +25,7 @@ public class Try {
 		 * System.out.print(tab.minTerms.get(i) + " "); }
 		 */
 		GenerateCols tab2 = new GenerateCols();
-		tab2.generate(3, "0,1,2,3,4,5,6,7", "");
+		tab2.generate(10, "0,1,2,3","");
 		LinkedList<Implicant> impls = tab2.getImplicants();
 		if (impls == null) {
 			System.out.println(1);
@@ -50,6 +50,10 @@ public class Try {
 		for (int i = 0; i < tab2.getMinterms().size(); i++) {
 			System.out.print(tab2.getMinterms().get(i) + " ");
 			
+		}
+		System.out.println();
+		for (int i=0;i<Math.pow(2, 10);i++){
+			System.out.print(i + ",");
 		}
 	}
 

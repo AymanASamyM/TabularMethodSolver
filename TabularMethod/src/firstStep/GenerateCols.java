@@ -16,6 +16,7 @@ public class GenerateCols {
 			Group tmp;
 			for (int j = 0; j < cols.get(i).colGroups.size() - 1; j++) {
 				tmp = Group.merge(cols.get(i).colGroups.get(j), cols.get(i).colGroups.get(j + 1));
+				tmp.removeDuplicate();
 				x.colGroups.add(tmp);
 			}
 			cols.add(x);
