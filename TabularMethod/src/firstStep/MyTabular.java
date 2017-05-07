@@ -74,6 +74,7 @@ public class MyTabular implements Tabular {
 			}
 			Implicant minterm = new Implicant();
 			minterm.num = impl;
+			minterm.cover.add(impl);
 			impls[numOfOnes].add(minterm);
 		}
 		for (int i = 0; i <= num; i++) {

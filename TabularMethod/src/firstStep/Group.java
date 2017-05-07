@@ -43,6 +43,12 @@ public class Group {
 					imp.check = false;
 					imp.difs.add(new Integer(diff));
 					Collections.sort(imp.difs);
+					for (int k = 0; k < a.get(i).cover.size(); k++) {
+						imp.addCover(a.get(i).cover.get(k));
+					}
+					for (int k = 0; k < b.get(j).cover.size(); k++) {
+						imp.addCover(b.get(j).cover.get(k));
+					}
 					res.add(imp);
 					mergeFlag = true;
 				}
