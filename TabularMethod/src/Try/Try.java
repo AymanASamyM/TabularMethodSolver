@@ -25,7 +25,7 @@ public class Try {
 		 * System.out.print(tab.minTerms.get(i) + " "); }
 		 */
 		GenerateCols tab2 = new GenerateCols();
-		tab2.generate(3, "0,1,2,3,4,5,6", "7");
+		tab2.generate(3, "0,1,2,3,4,5,6,7", "");
 		LinkedList<Implicant> impls = tab2.getImplicants();
 		if (impls == null) {
 			System.out.println(1);
@@ -36,14 +36,20 @@ public class Try {
 			for (int j = 0; j < impls.get(i).difs.size(); j++) {
 				try {
 					System.out.print(impls.get(i).difs.get(j) + " ");
+					
 				} catch (Exception e) {
 
 				}
+			}
+			System.out.print("==> it covers : ");
+			for (int k = 0;k < impls.get(i).cover.size(); k++) {
+				System.out.print(impls.get(i).cover.get(k) + " ");
 			}
 			System.out.println();
 		}
 		for (int i = 0; i < tab2.getMinterms().size(); i++) {
 			System.out.print(tab2.getMinterms().get(i) + " ");
+			
 		}
 	}
 
