@@ -31,4 +31,35 @@ public class StaticMethods {
 			}
 		}
 	}
+	/**
+	 * 
+	 * @param implicants
+	 * @return first Column
+	 */
+	public static Column generateFirstColumn (LinkedList<Integer> implicants){
+		Column firstColumn = new Column();
+		Group[] groups = new Group[Inputs.num + 1];
+		for (int i = 0; i <= Inputs.num; i++) {
+			groups[i] = new Group();
+		}
+
+		for (int i = 0; i < implicants.size(); i++) {
+			int implicant, tmp;
+			implicant = tmp = implicants.get(i);
+			int numOfOnes = 0;
+			while (tmp != 0) {
+				numOfOnes += tmp % 2;
+				tmp /= 2;
+			}
+			
+			Implicant minterm = new Implicant(implicant);
+			groups[numOfOnes].add(minterm);
+		}
+		for (int i = 0; i <= Inputs.num; i++) {
+			if (groups[i].implicants.size() != 0) {
+				firstColumn.myColumn.add(groups[i]);
+			}
+		}
+		return firstColumn;
+	}
 }

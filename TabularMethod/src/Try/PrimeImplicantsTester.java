@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import org.junit.Test;
 
 import firstStep.Implicant;
-import firstStep.MyTabular;
 import secondStep.PrimeImplicants;
 
 public class PrimeImplicantsTester {
