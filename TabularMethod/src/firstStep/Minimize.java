@@ -17,10 +17,10 @@ public class Minimize {
 				covered.add(new boolean[imps.size()]);
 			}
 			for (int i = 0; i < imps.size(); i++) {
-				LinkedList<Integer> mincoverd = imps.get(i).cover();
-				for (int j = 0; j < mincoverd.size(); j++) {
-					int ind = minTerms.indexOf(mincoverd.get(j));
-					covered.get(ind)[i] = true;
+//				LinkedList<Integer> mincoverd = imps.get(i).cover();
+//				for (int j = 0; j < mincoverd.size(); j++) {
+//					int ind = minTerms.indexOf(mincoverd.get(j));
+//					covered.get(ind)[i] = true;
 				}
 			}
 			for (int i = 0; i < minTerms.size(); i++) {
@@ -46,7 +46,7 @@ public class Minimize {
 					}
 				}
 			}
-		}
+//		}
 		return res;
 	}
 }
