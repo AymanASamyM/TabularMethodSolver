@@ -23,7 +23,7 @@ public class PrimeImplicantsTester {
 		 * 12(2)(e)							X		x
 		 * 7(8)					x								x
 		 * 11(4)						x						x
-		 * 14(1)									x			x
+		 * 14(1)(c)									x			x
 		 * 
 		 * 
 		 * Capital X for essential
@@ -53,7 +53,7 @@ public class PrimeImplicantsTester {
 		LinkedList<Implicant> essentialprimeImp = new LinkedList<Implicant>();
 		essentialprimeImp.add(primeImps[4]);
 		assertEquals(essentialprimeImp, prImp.genrateEssential());
-		assertEquals(7, prImp.myPrimeImplicant.size());
+		assertEquals(6, prImp.myPrimeImplicant.size());
 		assertEquals(6, prImp.minterms.size());
 	}
 	

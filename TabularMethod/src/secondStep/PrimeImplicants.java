@@ -69,6 +69,13 @@ public class PrimeImplicants {
 		for(Integer minterm : imp.cover)
 		{
 			minterms.remove(minterm);
+			for(Implicant secondImp : myPrimeImplicant)
+			{
+				if(imp != secondImp)
+				{
+					secondImp.cover.remove(minterm);
+				}
+			}
 		}
 		myPrimeImplicant.remove(imp);
 	}
