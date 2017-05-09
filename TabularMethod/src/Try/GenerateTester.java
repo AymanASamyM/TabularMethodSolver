@@ -6,16 +6,16 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import firstStep.GenerateCols;
+import firstStep.GenerateFistStep;
 import firstStep.Implicant;
 
 public class GenerateTester {
 
-	GenerateCols tester = new GenerateCols();
+	GenerateFistStep tester = new GenerateFistStep();
 
 	@Test
 	public void test() {
-		tester.generate(4, "0,1,4,5,6,9,7,11,15", "10, 14");
+		tester.generateTabular("0,1,4,5,6,9,7,11,15", "10, 14");
 		LinkedList<Implicant> impls = tester.getImplicants();
 
 		int[] num = { 1, 9, 0, 4, 6, 10 };

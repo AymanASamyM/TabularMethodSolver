@@ -2,10 +2,8 @@ package Try;
 
 import java.util.LinkedList;
 
-import firstStep.GenerateCols;
+import firstStep.GenerateFistStep;
 import firstStep.Implicant;
-import firstStep.MyTabular;
-import interFaces.Tabular;
 
 public class Try {
 
@@ -24,8 +22,8 @@ public class Try {
 		 * i = 0; i < tab.minTerms.size(); i++) {
 		 * System.out.print(tab.minTerms.get(i) + " "); }
 		 */
-		GenerateCols tab2 = new GenerateCols();
-		tab2.generate(4, "0,1,4,5,6,9,7,11,15", "10,14");
+		GenerateFistStep tab2 = new GenerateFistStep();
+		tab2.generateTabular("0,1,4,5,6,9,7,11,15", "10, 14");
 		LinkedList<Implicant> impls = tab2.getImplicants();
 		if (impls == null) {
 			System.out.println(1);
@@ -52,9 +50,10 @@ public class Try {
 			
 		}
 		System.out.println();
-		for (int i=0;i<Math.pow(2, 10);i++){
-			System.out.print(i + ",");
-		}
+//		System.out.println( Math.ceil(Math.log(127+1) / Math.log(2)));
+//		for (int i=0;i<Math.pow(2, 9);i++){
+//			System.out.print(i + ",");
+//		}
 	}
 
 }
