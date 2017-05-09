@@ -16,18 +16,11 @@ public class GenerateFistStep implements FirstStepInterface {
 	@Override
 	public void generateTabular(String minterms, String dontcares) {
 		Inputs.setInputs(minterms, dontcares);
-		columns.add(StaticMethods.generateFirstColumn(Inputs.implicants));
-		int i = 0;
-		while (i < Inputs.num) {
-			Column x = new Column();
-			Group tmp;
-			for (int j = 0; j < columns.get(i).myColumn.size() - 1; j++) {
-				tmp = Group.merge(columns.get(i).myColumn.get(j), columns.get(i).myColumn.get(j + 1));
-				StaticMethods.removeDuplicate(tmp.implicants);
-				x.myColumn.add(tmp);
-			}
-			columns.add(x);
-			i++;
+		columns.add(Column.generateFirstColumn(Inputs.implicants));
+		for(int i = 0;i < Inputs.variblesNum;i++)
+		{
+			Column nextCol = columns.get(i).generateNextCol();
+			columns.add(nextCol);
 		}
 	}
 	/**

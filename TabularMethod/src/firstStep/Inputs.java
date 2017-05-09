@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 public class Inputs {
-	public static int num;
+	public static int variblesNum;
 	public static LinkedList<Integer> minTerms = new LinkedList<Integer>();
 	public static LinkedList<Integer> implicants = new LinkedList<Integer>();
 
@@ -15,7 +15,12 @@ public class Inputs {
 	 *            Strings one for minTerms and another for dont cares
 	 */
 	public static void setInputs(String minterms, String dontcares) {
-		// TODO Auto-generated method stub
+		setInputs(minterms, dontcares, 0);
+		int tmp = (implicants.getLast() > minTerms.getLast()) ? implicants.getLast() : minTerms.getLast();
+		Inputs.variblesNum = (int) Math.ceil(Math.log(tmp + 1) / Math.log(2));
+	}
+	
+	public static void setInputs(String minterms, String dontcares, int num) {
 		int flag = minterms.length();
 		minterms += "," + dontcares;
 		for (int i = 0; i < minterms.length(); i++) {
@@ -44,8 +49,5 @@ public class Inputs {
 		StaticMethods.removeDuplicate(minTerms);
 		Collections.sort(implicants);
 		Collections.sort(minTerms);
-		int tmp = (implicants.getLast() > minTerms.getLast()) ? implicants.getLast() : minTerms.getLast();
-		Inputs.num = (int) Math.ceil(Math.log(tmp + 1) / Math.log(2));
 	}
-
 }

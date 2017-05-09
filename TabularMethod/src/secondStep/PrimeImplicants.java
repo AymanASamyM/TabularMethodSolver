@@ -7,15 +7,20 @@ import firstStep.Implicant;
 public class PrimeImplicants {
 	public LinkedList<Implicant> myPrimeImplicant = new LinkedList<Implicant>();
 	public LinkedList<Integer> minterms;
+	public LinkedList<Implicant> essentialPrimeImps = new LinkedList<Implicant>();
 	
 	public PrimeImplicants(LinkedList<Integer> minterms, LinkedList<Implicant> primeImplicants) {
 		this.minterms = minterms;
 		this.myPrimeImplicant = primeImplicants;
+		genrateEssential();
 	}
 	
-	public LinkedList<Implicant> genrateEssential()
+	public LinkedList<Implicant> getEssentials()
 	{
-		LinkedList<Implicant> essentialPrimeImps = new LinkedList<Implicant>();
+		return essentialPrimeImps;
+	}
+	private void genrateEssential()
+	{
 		boolean edited = true;
 		while (edited) {
 			edited = false;
@@ -61,22 +66,21 @@ public class PrimeImplicants {
 				}
 			}
 		}
-		return essentialPrimeImps;
 	}
 	
-	public void deleteImplicant(Implicant imp)
+	public void deleteImplicant(Implicant deletedImp)
 	{
-		for(Integer minterm : imp.cover)
+		for(Integer minterm : deletedImp.coveredMinterms)
 		{
 			minterms.remove(minterm);
-			for(Implicant secondImp : myPrimeImplicant)
+			for(Implicant imp : myPrimeImplicant)
 			{
-				if(imp != secondImp)
+				if(deletedImp != imp)
 				{
-					secondImp.cover.remove(minterm);
+					imp.removeCoveredMinterm(minterm);
 				}
 			}
 		}
-		myPrimeImplicant.remove(imp);
+		myPrimeImplicant.remove(deletedImp);
 	}
 }

@@ -12,7 +12,7 @@ public class Implicant {
 	public int num;
 	public LinkedList<Integer> difs = new LinkedList<Integer>();
 	public boolean ischecked = false;
-	public LinkedList<Integer> cover = new LinkedList<Integer>();
+	public LinkedList<Integer> coveredMinterms = new LinkedList<Integer>();
 
 	/**
 	 * @param num
@@ -20,7 +20,7 @@ public class Implicant {
 	 */
 	public Implicant(int num) {
 		this.num = num;
-		cover.add(new Integer(num));
+		coveredMinterms.add(new Integer(num));
 	}
 	
 	/**
@@ -31,7 +31,7 @@ public class Implicant {
 		num = imp.num;
 		ischecked = imp.ischecked;
 		difs = new LinkedList<Integer>(imp.difs);
-		cover = new LinkedList<Integer>(imp.cover);
+		coveredMinterms = new LinkedList<Integer>(imp.coveredMinterms);
 	}
 	
 	public void addDifference(int difference) {
@@ -53,13 +53,13 @@ public class Implicant {
 	 * Update cover when adding "difference" to difs
 	 */
 	private void addtoCover(int difference) {
-		LinkedList<Integer> newCover = new LinkedList<Integer>(cover);
+		LinkedList<Integer> newCover = new LinkedList<Integer>(coveredMinterms);
 		for(int i = 0;i < newCover.size();i++)
 		{
 			newCover.set(i, newCover.get(i) + difference);
 		}
-		cover.addAll(newCover);
-		Collections.sort(cover);
+		coveredMinterms.addAll(newCover);
+		Collections.sort(coveredMinterms);
 	}
 	
 	/**
@@ -88,13 +88,13 @@ public class Implicant {
 	 */
 	public boolean coversAllOf(Implicant imp)
 	{
-		if(cover.size() <= imp.cover.size())
+		if(coveredMinterms.size() <= imp.coveredMinterms.size())
 		{
 			return false;
 		}
-		for(Integer i : imp.cover)
+		for(Integer i : imp.coveredMinterms)
 		{
-			if(!cover.contains(i))
+			if(!coveredMinterms.contains(i))
 			{
 				return false;
 			}
@@ -108,7 +108,7 @@ public class Implicant {
 	 */
 	public boolean coversminTerm(Integer minterm)
 	{
-		if(cover.contains(minterm))
+		if(coveredMinterms.contains(minterm))
 		{
 			return true;
 		}
@@ -116,5 +116,13 @@ public class Implicant {
 		{
 			return false;
 		}
+	}
+	
+	/**
+	 * remove an covered minterm from cover 
+	 * @param minterm
+	 */
+	public void removeCoveredMinterm(Integer minterm) {
+		coveredMinterms.remove(minterm);
 	}
 }

@@ -23,8 +23,8 @@ public class ImplicantTester {
 		LinkedList<Integer> bCover = new LinkedList<Integer>();
 		aCover.add(0);
 		bCover.add(6);
-		assertEquals(aCover, a.cover);
-		assertEquals(bCover, b.cover);
+		assertEquals(aCover, a.coveredMinterms);
+		assertEquals(bCover, b.coveredMinterms);
 	}
 	
 	@Test
@@ -45,8 +45,8 @@ public class ImplicantTester {
 		aCover.add(2);
 		bCover.add(0);
 		bCover.add(4);
-		assertEquals(aCover, a.cover);
-		assertEquals(bCover, b.cover);
+		assertEquals(aCover, a.coveredMinterms);
+		assertEquals(bCover, b.coveredMinterms);
 	}
 	
 	@Test
@@ -73,8 +73,8 @@ public class ImplicantTester {
 		bCover.add(3);
 		bCover.add(5);
 		bCover.add(7);
-		assertEquals(aCover, a.cover);
-		assertEquals(bCover, b.cover);
+		assertEquals(aCover, a.coveredMinterms);
+		assertEquals(bCover, b.coveredMinterms);
 	}
 
 }

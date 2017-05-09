@@ -52,7 +52,7 @@ public class PrimeImplicantsTester {
 		PrimeImplicants prImp = new PrimeImplicants(new LinkedList<Integer>(Arrays.asList(minterms)), primeImpsll);
 		LinkedList<Implicant> essentialprimeImp = new LinkedList<Implicant>();
 		essentialprimeImp.add(primeImps[4]);
-		assertEquals(essentialprimeImp, prImp.genrateEssential());
+		assertEquals(essentialprimeImp, prImp.getEssentials());
 		assertEquals(6, prImp.myPrimeImplicant.size());
 		assertEquals(6, prImp.minterms.size());
 	}
@@ -91,7 +91,7 @@ public class PrimeImplicantsTester {
 		essentialprimeImp.add(primeImps[0]);
 		essentialprimeImp.add(primeImps[1]);
 		essentialprimeImp.add(primeImps[3]);
-		assertEquals(essentialprimeImp.size(), prImp.genrateEssential().size());
+		assertEquals(essentialprimeImp, prImp.getEssentials());
 		assertEquals(2, prImp.myPrimeImplicant.size());
 		assertEquals(1, prImp.minterms.size());
 	}

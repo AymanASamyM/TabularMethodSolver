@@ -40,8 +40,8 @@ public class Try {
 				}
 			}
 			System.out.print("==> it covers : ");
-			for (int k = 0;k < impls.get(i).cover.size(); k++) {
-				System.out.print(impls.get(i).cover.get(k) + " ");
+			for (int k = 0;k < impls.get(i).coveredMinterms.size(); k++) {
+				System.out.print(impls.get(i).coveredMinterms.get(k) + " ");
 			}
 			System.out.println();
 		}
