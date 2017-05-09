@@ -1,6 +1,6 @@
 package firstStep;
 
-import java.util.Collection;
+
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -10,23 +10,35 @@ public class Implicant {
 	 */
 	public int num;
 	public LinkedList<Integer> difs = new LinkedList<Integer>();
-	public boolean check = false;
+	public boolean ischecked = false;
 	public LinkedList<Integer> cover = new LinkedList<Integer>();
 
-	public Implicant() {
-
-	}
-
+	/**
+	 * @param num
+	 * Create a new Implicant with the number num
+	 */
 	public Implicant(int num) {
 		this.num = num;
+		cover.add(new Integer(num));
 	}
-
+	
+	/**
+	 * @param imp
+	 * Create a new copy of the implicant imp
+	 */
 	public Implicant(Implicant imp) {
 		num = imp.num;
-		check = imp.check;
+		ischecked = imp.ischecked;
 		difs = new LinkedList<Integer>(imp.difs);
+		cover = new LinkedList<Integer>(imp.cover);
 	}
-
+	
+	public void addDifference(int difference) {
+		difs.add(new Integer(difference));
+		Collections.sort(difs);
+		addtoCover(difference);
+	}
+	
 	@Override
 	public boolean equals(Object arg0) {
 		Implicant imp = (Implicant) arg0;
@@ -34,16 +46,33 @@ public class Implicant {
 			return false;
 		return this.difs.equals(imp.difs);
 	}
-
-	public void addCover(Integer minTerm) {
-		cover.add(minTerm);
-		Collections.sort(cover);
-		for (int i = 0; i < cover.size() - 1; i++) {
-			if (cover.get(i).equals(cover.get(i + 1))) {
-				cover.remove(i);
-				i--;
-			}
+	
+	private void addtoCover(int difference) {
+		LinkedList<Integer> newCover = new LinkedList<Integer>(cover);
+		for(int i = 0;i < newCover.size();i++)
+		{
+			newCover.set(i, newCover.get(i) + difference);
 		}
+		cover.addAll(newCover);
+		Collections.sort(cover);
 	}
 	
+	/**
+	 * @param a
+	 * @param b
+	 * @return true if implicant a & b has identical differences 
+	 * @return false otherwise
+	 */
+	public static boolean hasequalDiffs(Implicant a, Implicant b) {
+		if (a.difs.size() == b.difs.size()) {
+			for (int i = 0; i < a.difs.size(); i++) {
+				if (!a.difs.get(i).equals(b.difs.get(i))) {
+					return false;
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
