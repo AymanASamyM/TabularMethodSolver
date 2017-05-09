@@ -7,12 +7,11 @@ import interFaces.Tabular;
 
 public class MyTabular implements Tabular {
 	public int num;
-	public col group0 = new col();
+	public Column group0 = new Column();
 	public LinkedList<Integer> minTerms = new LinkedList<Integer>();
 
 	@Override
 	public void setNumOfVariables(int num) {
-		// TODO Auto-generated method stub
 		this.num = num;
 	}
 
@@ -66,13 +65,11 @@ public class MyTabular implements Tabular {
 				numOfOnes += tmp % 2;
 				tmp /= 2;
 			}
-			Implicant minterm = new Implicant();
-			minterm.num = impl;
-			minterm.cover.add(impl);
+			Implicant minterm = new Implicant(impl);
 			impls[numOfOnes].add(minterm);
 		}
 		for (int i = 0; i <= num; i++) {
-			if (impls[i].myGroup.size() != 0) {
+			if (impls[i].implicants.size() != 0) {
 				group0.colGroups.add(impls[i]);
 			}
 		}

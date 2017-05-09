@@ -1,101 +1,72 @@
 package firstStep;
 
-import java.util.Collections;
 import java.util.LinkedList;
 
 import firstStep.Implicant;
 
 public class Group {
-	public LinkedList<Implicant> myGroup = new LinkedList<Implicant>();
-	public int size = 0;
-	public static boolean mergeFlag = false;
+	public LinkedList<Implicant> implicants = new LinkedList<Implicant>();
 
+	/**
+	 * @param imp
+	 * Add an Implicant (imp) to the Group
+	 */
 	public void add(Implicant imp) {
-		myGroup.add(imp);
-		size++;
+		implicants.add(imp);
 	}
-
-	public static boolean isPowerOf2(int tmp) {
-		int numOfOnes = 0;
-		while (tmp != 0) {
-			numOfOnes += tmp % 2;
-			tmp /= 2;
-		}
-		return numOfOnes == 1;
+	
+	/**
+	 * @return the size of the Group
+	 */
+	public int size() {
+		return implicants.size();
 	}
+	
 
+	/**
+	 * @param index
+	 * @return the implicant number "index"
+	 */
 	public Implicant get(int index) {
-		return myGroup.get(index);
+		return implicants.get(index);
 	}
 
+	/**
+	 * @param a
+	 * @param b
+	 * Merge two groups and
+	 * @return the mergedGroup
+	 */
 	public static Group merge(Group a, Group b) {
 		Group res = new Group();
-		mergeFlag = false;
-		for (int i = 0; i < a.size; i++) {
-			for (int j = 0; j < b.size; j++) {
-				int diff = b.get(j).num - a.get(i).num;
-				if (diff < 0)
+		for (Implicant firstImp : a.implicants) {
+			for (Implicant secondImp : b.implicants) {
+				int difference = secondImp.num - firstImp.num;
+				if (difference < 0)
 					continue;
-				if (compareDifs(a.get(i), b.get(j)) && isPowerOf2(diff)) {
-					Implicant imp = new Implicant(a.get(i));
-					a.get(i).check = true;
-					b.get(j).check = true;
-					imp.check = false;
-					imp.difs.add(new Integer(diff));
-					Collections.sort(imp.difs);
-					for (int k = 0; k < a.get(i).cover.size(); k++) {
-						imp.addCover(a.get(i).cover.get(k));
-					}
-					for (int k = 0; k < b.get(j).cover.size(); k++) {
-						imp.addCover(b.get(j).cover.get(k));
-					}
-					res.add(imp);
-					mergeFlag = true;
+				if (Implicant.hasequalDiffs(firstImp, secondImp) && StaticMethods.isPowerOf2(difference)) {
+					Implicant mergedImp = new Implicant(firstImp);
+					firstImp.ischecked = secondImp.ischecked = true;
+					mergedImp.ischecked = false;
+					mergedImp.addDifference(difference);
+					res.add(mergedImp);
 				}
 			}
 		}
-		res.removeDuplicate();
+		StaticMethods.removeDuplicate(res.implicants);
 		return res;
 	}
 
-	public void removeDuplicate() {
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				if (this.get(i).equals(this.get(j)) && i != j) {
-					this.remove(j);
-				}
+	/**
+	 * @return the prime Implicant in a group (unchecked implicants)
+	 */
+	public LinkedList<Implicant> getPrimeImplicants() {
+		LinkedList<Implicant> res = new LinkedList<Implicant>();
+		for (Implicant currentImp : implicants) { 
+			if (!currentImp.ischecked) {
+				res.add(currentImp);
 			}
 		}
-	}
-
-	private void remove(int i) {
-		myGroup.remove(i);
-		size--;
-	}
-
-	public static boolean compareDifs(Implicant a, Implicant b) {
-		Collections.sort(a.difs);
-		Collections.sort(b.difs);
-		if (a.difs.size() == b.difs.size()) {
-			for (int i = 0; i < a.difs.size(); i++) {
-				if (!a.difs.get(i).equals(b.difs.get(i))) {
-					return false;
-				}
-			}
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public LinkedList<Implicant> checker() {
-		LinkedList<Implicant> tmp = new LinkedList<Implicant>();
-		for (int i = 0; i < myGroup.size(); i++) {
-			if (!myGroup.get(i).check) {
-				tmp.add(myGroup.get(i));
-			}
-		}
-		return tmp;
-
+		return res;
 	}
 }
