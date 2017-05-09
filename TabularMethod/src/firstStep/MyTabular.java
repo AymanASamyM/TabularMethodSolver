@@ -52,16 +52,10 @@ public class MyTabular implements Tabular {
 				}
 			}
 		}
-		Collections.sort(numbers);
-		for (int i = 0; i < numbers.size() - 1; i++) {
-			if (numbers.get(i).equals(numbers.get(i + 1))) {
-				numbers.remove(i + 1);
-				if (i < flag) {
-					minTerms.remove(i);
-				}
-				i--;
-			}
-		}
+		/* remove dublicates from minTerms List and Numbers List which have the minterms and dont cars */
+		deleteDub(numbers);
+		deleteDub(minTerms);
+		
 		for (int i = 0; i < numbers.size(); i++) {
 			int impl = numbers.get(i), tmp = impl;
 			int numOfOnes = 0;
@@ -80,6 +74,16 @@ public class MyTabular implements Tabular {
 		for (int i = 0; i <= num; i++) {
 			if (impls[i].myGroup.size() != 0) {
 				group0.colGroups.add(impls[i]);
+			}
+		}
+	}
+	
+	private void deleteDub (LinkedList<Integer> a) {
+		Collections.sort(a);
+		for (int i = 0; i < a.size() - 1; i++) {
+			if (a.get(i).equals(a.get(i + 1))) {
+				a.remove(i + 1);
+				i--;
 			}
 		}
 	}

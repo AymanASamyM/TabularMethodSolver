@@ -51,6 +51,10 @@ public class Try {
 			System.out.print(tab2.getMinterms().get(i) + " ");
 			
 		}
+		System.out.println();
+		for (int i=0;i<Math.pow(2, 10);i++){
+			System.out.print(i + ",");
+		}
 	}
 
 }
