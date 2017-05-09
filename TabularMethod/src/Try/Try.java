@@ -25,7 +25,7 @@ public class Try {
 		 * System.out.print(tab.minTerms.get(i) + " "); }
 		 */
 		GenerateCols tab2 = new GenerateCols();
-		tab2.generate(3, "0,1,2,3,4,5,6,7", "");
+		tab2.generate(4, "0,1,4,5,6,9,7,11,15", "10,14");
 		LinkedList<Implicant> impls = tab2.getImplicants();
 		if (impls == null) {
 			System.out.println(1);
