@@ -10,7 +10,9 @@ public class Inputs {
 
 	/**
 	 * set number of variables, minterms and dont cares
-	 * @param two Strings one for minTerms and another for dont cares
+	 * 
+	 * @param two
+	 *            Strings one for minTerms and another for dont cares
 	 */
 	public static void setInputs(String minterms, String dontcares) {
 		// TODO Auto-generated method stub
@@ -34,13 +36,16 @@ public class Inputs {
 				}
 			}
 		}
-		/* remove dublicates from minTerms List and implicants List which have the minterms and dont cars */
+		/*
+		 * remove dublicates from minTerms List and implicants List which have
+		 * the minterms and dont cars
+		 */
 		StaticMethods.removeDuplicate(implicants);
 		StaticMethods.removeDuplicate(minTerms);
 		Collections.sort(implicants);
 		Collections.sort(minTerms);
-		
-		Inputs.num = (int) Math.ceil(Math.log(minTerms.get(minTerms.size() - 1) + 1) / Math.log(2));
+		int tmp = (implicants.getLast() > minTerms.getLast()) ? implicants.getLast() : minTerms.getLast();
+		Inputs.num = (int) Math.ceil(Math.log(tmp + 1) / Math.log(2));
 	}
-	
+
 }
