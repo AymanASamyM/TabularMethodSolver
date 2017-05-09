@@ -14,9 +14,9 @@ public class GenerateCols {
 		while (i < firstCol.num) {
 			Column x = new Column();
 			Group tmp;
-			for (int j = 0; j < cols.get(i).colGroups.size() - 1; j++) {
-				tmp = Group.merge(cols.get(i).colGroups.get(j), cols.get(i).colGroups.get(j + 1));
-				x.colGroups.add(tmp);
+			for (int j = 0; j < cols.get(i).mycolumn.size() - 1; j++) {
+				tmp = Group.merge(cols.get(i).mycolumn.get(j), cols.get(i).mycolumn.get(j + 1));
+				x.mycolumn.add(tmp);
 			}
 			cols.add(x);
 			i++;
@@ -27,8 +27,8 @@ public class GenerateCols {
 		LinkedList<Implicant> primeImplicants = new LinkedList<Implicant>();
 		for (int i = 0; i < cols.size(); i++) {
 			LinkedList<Implicant> tmp = null;
-			for (int j = 0; j < cols.get(i).colGroups.size(); j++) {
-				tmp = cols.get(i).colGroups.get(j).getPrimeImplicants();
+			for (int j = 0; j < cols.get(i).mycolumn.size(); j++) {
+				tmp = cols.get(i).mycolumn.get(j).getPrimeImplicants();
 				if (tmp != null) {
 					for (int k = 0; k < tmp.size(); k++) {
 						if (!firstCol.minTerms.contains(tmp.get(k).num) && tmp.get(k).difs.size() == 0) {

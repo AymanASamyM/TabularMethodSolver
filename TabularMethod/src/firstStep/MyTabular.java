@@ -70,7 +70,7 @@ public class MyTabular implements Tabular {
 		}
 		for (int i = 0; i <= num; i++) {
 			if (impls[i].implicants.size() != 0) {
-				group0.colGroups.add(impls[i]);
+				group0.mycolumn.add(impls[i]);
 			}
 		}
 	}

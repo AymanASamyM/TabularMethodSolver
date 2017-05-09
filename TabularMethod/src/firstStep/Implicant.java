@@ -4,6 +4,7 @@ package firstStep;
 import java.util.Collections;
 import java.util.LinkedList;
 
+
 public class Implicant {
 	/**
 	 * 
@@ -47,6 +48,10 @@ public class Implicant {
 		return this.difs.equals(imp.difs);
 	}
 	
+	/**
+	 * @param difference
+	 * Update cover when adding "difference" to difs
+	 */
 	private void addtoCover(int difference) {
 		LinkedList<Integer> newCover = new LinkedList<Integer>(cover);
 		for(int i = 0;i < newCover.size();i++)
@@ -72,6 +77,43 @@ public class Implicant {
 			}
 			return true;
 		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * @param imp
+	 * @return true if this implicant covers all the minterms that 'imp' does and more
+	 * @return false if this implicant covers the same minterms as 'imp' does or less
+	 */
+	public boolean coversAllOf(Implicant imp)
+	{
+		if(cover.size() <= imp.cover.size())
+		{
+			return false;
+		}
+		for(Integer i : imp.cover)
+		{
+			if(!cover.contains(i))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * @param minterm
+	 * @return true if this implicant covers 'minterm'
+	 */
+	public boolean coversminTerm(Integer minterm)
+	{
+		if(cover.contains(minterm))
+		{
+			return true;
+		}
+		else
+		{
 			return false;
 		}
 	}
