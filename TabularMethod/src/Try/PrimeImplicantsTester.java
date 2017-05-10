@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import org.junit.Test;
 
 import firstStep.Implicant;
+import secondStep.Combination;
 import secondStep.PrimeImplicants;
 
 public class PrimeImplicantsTester {
@@ -15,17 +16,18 @@ public class PrimeImplicantsTester {
 	@Test
 	public void test1() {
 		/*
-		 * 				1	5	7	9 	11	12(c)	14(c)		15
-		 * 1(4)			x	x
-		 * 1(8)			x			x
-		 * 5(2)				x	x
-		 * 9(2)						x	x
-		 * 12(2)(e)							X		x
-		 * 7(8)					x								x
-		 * 11(4)						x						x
-		 * 14(1)(c)									x			x
+		 * 						1	5	7	9 	11	12(c)	14(c)		15
+		 * 	P0	1(4)			x	x
+		 * 	P1	1(8)			x			x
+		 * 	P2	5(2)				x	x
+		 * 	P3	9(2)						x	x
+		 * 		12(2)(e)							X		x
+		 * 	P4	7(8)					x								x
+		 * 	P5	11(4)						x						x
+		 * 		14(1)(c)									x			x
 		 * 
-		 * 
+		 * 	right combinations should be :  
+		 * 	P0 P3 P4 + P0 P2 P3 P5 + P0 P1 P4 P5 + P1 P2 P3 P4 + P1 P2 P5 
 		 * Capital X for essential
 		 * c for canceled
 		 * e for essential
@@ -55,6 +57,7 @@ public class PrimeImplicantsTester {
 		assertEquals(essentialprimeImp, prImp.getEssentials());
 		assertEquals(6, prImp.myPrimeImplicant.size());
 		assertEquals(6, prImp.minterms.size());
+		assertEquals(5, prImp.getRigthCombinations().size());
 	}
 	
 	@Test
@@ -94,5 +97,6 @@ public class PrimeImplicantsTester {
 		assertEquals(essentialprimeImp, prImp.getEssentials());
 		assertEquals(2, prImp.myPrimeImplicant.size());
 		assertEquals(1, prImp.minterms.size());
+		assertEquals(2, prImp.getRigthCombinations().size());
 	}
 }
