@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import interFaces.FirstStepInterface;
 
 public class GenerateFistStep implements FirstStepInterface {
-	private LinkedList<Column> columns = new LinkedList<Column>();
+	public LinkedList<Column> columns = new LinkedList<Column>();
 	private LinkedList<Implicant> primeImplicants = new LinkedList<Implicant>();
 
 	/**

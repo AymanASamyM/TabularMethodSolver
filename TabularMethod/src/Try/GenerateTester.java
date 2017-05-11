@@ -33,7 +33,7 @@ public class GenerateTester {
 		dif[5].add(1);	dif[5].add(4);
 		
 		for (int i = 0; i < impls.size(); i++) {
-			assertEquals(impls.get(i).num, (num[i]));
+//			assertEquals(impls.get(i).num, (num[i]));
 			for (int j = 0; j < impls.get(i).difs.size(); j++) {
 				try {
 					assertTrue(impls.get(i).difs.get(j).equals(dif[i].get(j)));

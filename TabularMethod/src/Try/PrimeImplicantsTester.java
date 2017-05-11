@@ -15,7 +15,7 @@ public class PrimeImplicantsTester {
 
 	@Test
 	public void test1() {
-		/*
+		/**
 		 * 						1	5	7	9 	11	12(c)	14(c)		15
 		 * 	P0	1(4)			x	x
 		 * 	P1	1(8)			x			x
@@ -62,7 +62,7 @@ public class PrimeImplicantsTester {
 	
 	@Test
 	public void test2() {
-		/*
+		/**
 		 * 				0(c)	1(c)	3(c)	5(c)	6(c)	7(c)	8(c)	10		14(c)	15(c)	
 		 * 1(2,4)(e)			x		X		X				x
 		 * 6(1,8)(e)									X		x						x		x
