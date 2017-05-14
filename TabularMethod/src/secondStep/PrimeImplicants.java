@@ -206,4 +206,5 @@ public class PrimeImplicants {
 			solutions.add(res.toString());
 		}
 	}
+	
 }

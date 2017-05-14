@@ -72,11 +72,11 @@ public class GenerateFistStep implements FirstStepInterface {
 		return res.toString();
 	}
 
-	public String printTable(LinkedList<Implicant> primeImpls) {
-		char[][] tmp = new char[primeImpls.size()][Inputs.minTerms.size()];
+	public String printTable(LinkedList<Implicant> primes) {
+		char[][] tmp = new char[primes.size()][Inputs.minTerms.size()];
 		for (int i = 0; i < tmp.length; i++) {
 			for (int j = 0; j < tmp[i].length; j++) {
-				if (primeImpls.get(i).coveredMinterms.contains(Inputs.minTerms.get(j))) {
+				if (primes.get(i).coveredMinterms.contains(Inputs.minTerms.get(j))) {
 					tmp[i][j] = '\u2716';
 				} else {
 					tmp[i][j] = ' ';
@@ -89,8 +89,8 @@ public class GenerateFistStep implements FirstStepInterface {
 			variables[i] = (char) ('A' + i);
 		}
 		res.append("Prime Implicants are : \n");
-		for (int i = 0; i< primeImpls.size(); i++) {
-			res.append("P" + i + " = " + primeImpls.get(i).printImplicant(variables) + "\n");
+		for (int i = 0; i< primes.size(); i++) {
+			res.append("P" + i + " = " + primes.get(i).printImplicant(variables) + "\n");
 		}
 		for (int k = 0; k < Inputs.minTerms.size() * 2; k++) {
 			res.append("-----");
@@ -105,7 +105,7 @@ public class GenerateFistStep implements FirstStepInterface {
 		}
 		res.append("\n");
 
-		for (int i = 0; i < primeImpls.size(); i++) {
+		for (int i = 0; i < primes.size(); i++) {
 			res.append("P" + i + "   ");
 			for (int j = 0; j < Inputs.minTerms.size(); j++) {
 				res.append("| " + tmp[i][j] + " |     ");

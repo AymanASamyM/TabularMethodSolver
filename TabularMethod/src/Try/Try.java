@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import firstStep.GenerateFistStep;
 import firstStep.Implicant;
 import firstStep.Inputs;
+import firstStep.StaticMethods;
 import secondStep.PrimeImplicants;
 
 public class Try {
@@ -15,10 +16,8 @@ public class Try {
 		GenerateFistStep tabular = new GenerateFistStep();
 		tabular.generateTabular("0 1 2 3 6 7 14 15", "2 4");
 		System.out.println(tabular.printCols() + "\n");
-		System.out.println(tabular.printTable(tabular.getImplicants()));
-
 		LinkedList<Implicant> impls = tabular.getImplicants();
-
+		System.out.println(tabular.printTable(impls));
 		for (int i = 0; i < impls.size(); i++) {
 			System.out.print(impls.get(i).num + " ");
 			for (int j = 0; j < impls.get(i).difs.size(); j++) {
