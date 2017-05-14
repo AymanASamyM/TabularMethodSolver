@@ -13,7 +13,10 @@ public class Try {
 		// TODO Auto-generated method stub
 
 		GenerateFistStep tabular = new GenerateFistStep();
-		tabular.generateTabular("1 5 6 12 13 14", "2 4");
+		tabular.generateTabular("0 1 2 3 6 7 14 15", "2 4");
+		System.out.println(tabular.printCols() + "\n");
+		System.out.println(tabular.printTable(tabular.getImplicants()));
+
 		LinkedList<Implicant> impls = tabular.getImplicants();
 
 		for (int i = 0; i < impls.size(); i++) {
@@ -95,7 +98,7 @@ public class Try {
 		for (int i = 0; i < solver.solutions.size(); i++) {
 			System.out.println(solver.solutions.get(i));
 		}
-
+		 
 	}
 
 }

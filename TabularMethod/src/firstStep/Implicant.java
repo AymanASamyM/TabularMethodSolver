@@ -181,4 +181,25 @@ public class Implicant {
 		return index;
 	}
 
+	public String printImpl() {
+		StringBuilder res = new StringBuilder();
+		res.append(num + " ");
+		if (difs.size() != 0) {
+			res.append("(");
+
+			for (int j = 0; j < difs.size() - 1; j++) {
+				res.append(difs.get(j) + ", ");
+			}
+			res.append(difs.get(difs.size() - 1) + ")");
+		}
+		for (int i = 0; i < difs.size(); i++) {
+			res.append(" ");
+		}
+		if (ischecked == false) {
+			res.append(" : " + "\u2718" + " |");
+		} else {
+			res.append(" : " + "\u2714" + " |");
+		}
+		return res.toString();
+	}
 }

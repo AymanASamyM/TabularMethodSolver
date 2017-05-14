@@ -9,19 +9,18 @@ public class Group {
 
 	/**
 	 * @param imp
-	 * Add an Implicant (imp) to the Group
+	 *            Add an Implicant (imp) to the Group
 	 */
 	public void add(Implicant imp) {
 		implicants.add(imp);
 	}
-	
+
 	/**
 	 * @return the size of the Group
 	 */
 	public int size() {
 		return implicants.size();
 	}
-	
 
 	/**
 	 * @param index
@@ -34,7 +33,7 @@ public class Group {
 	/**
 	 * @param a
 	 * @param b
-	 * Merge two groups and
+	 *            Merge two groups and
 	 * @return the mergedGroup
 	 */
 	public static Group merge(Group a, Group b) {
@@ -62,11 +61,13 @@ public class Group {
 	 */
 	public LinkedList<Implicant> getPrimeImplicants() {
 		LinkedList<Implicant> res = new LinkedList<Implicant>();
-		for (Implicant currentImp : implicants) { 
+		for (Implicant currentImp : implicants) {
 			if (!currentImp.ischecked) {
 				res.add(currentImp);
 			}
 		}
 		return res;
 	}
+
+	
 }

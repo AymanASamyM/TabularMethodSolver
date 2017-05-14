@@ -10,6 +10,7 @@ public class GenerateFistStep implements FirstStepInterface {
 
 	/**
 	 * merge possible groups in each column
+	 * 
 	 * @param minterms
 	 * @param dontcares
 	 */
@@ -17,12 +18,12 @@ public class GenerateFistStep implements FirstStepInterface {
 	public void generateTabular(String minterms, String dontcares) {
 		Inputs.setInputs(minterms, dontcares);
 		columns.add(Column.generateFirstColumn(Inputs.implicants));
-		for(int i = 0;i < Inputs.variblesNum;i++)
-		{
+		for (int i = 0; i < Inputs.variblesNum; i++) {
 			Column nextCol = columns.get(i).generateNextCol();
 			columns.add(nextCol);
 		}
 	}
+
 	/**
 	 * 
 	 * @return prime Implicants
@@ -45,7 +46,7 @@ public class GenerateFistStep implements FirstStepInterface {
 		}
 		return primeImplicants;
 	}
-	
+
 	/**
 	 * 
 	 * @return Minterms
@@ -53,5 +54,68 @@ public class GenerateFistStep implements FirstStepInterface {
 	@Override
 	public LinkedList<Integer> getMinterms() {
 		return Inputs.minTerms;
+	}
+
+	public String printCols() {
+		StringBuilder res = new StringBuilder();
+		
+		for (int j = 0; j < columns.get(0).colConcat().size(); j++) {
+			for (int i = 0; i < columns.size(); i++) {
+				try {
+					res.append(columns.get(i).colConcat().get(j).printImpl() + "| \t");
+				} catch (Exception e) {
+					
+				}
+			}
+			res.append("\n");
+		}
+		return res.toString();
+	}
+
+	public String printTable(LinkedList<Implicant> primeImpls) {
+		char[][] tmp = new char[primeImpls.size()][Inputs.minTerms.size()];
+		for (int i = 0; i < tmp.length; i++) {
+			for (int j = 0; j < tmp[i].length; j++) {
+				if (primeImpls.get(i).coveredMinterms.contains(Inputs.minTerms.get(j))) {
+					tmp[i][j] = '\u2716';
+				} else {
+					tmp[i][j] = ' ';
+				}
+			}
+		}
+		StringBuilder res = new StringBuilder();
+		char[] variables = new char[Inputs.variblesNum];
+ 		for (int i = 0; i < variables.length; i++) {
+			variables[i] = (char) ('A' + i);
+		}
+		res.append("Prime Implicants are : \n");
+		for (int i = 0; i< primeImpls.size(); i++) {
+			res.append("P" + i + " = " + primeImpls.get(i).printImplicant(variables) + "\n");
+		}
+		for (int k = 0; k < Inputs.minTerms.size() * 2; k++) {
+			res.append("-----");
+		}
+		res.append("\n     ");
+		for (int i = 0; i < Inputs.minTerms.size(); i++) {
+			res.append("| " + Inputs.minTerms.get(i) + " |     ");
+		}
+		res.append("\n");
+		for (int k = 0; k < Inputs.minTerms.size() * 2; k++) {
+			res.append("-----");
+		}
+		res.append("\n");
+
+		for (int i = 0; i < primeImpls.size(); i++) {
+			res.append("P" + i + "   ");
+			for (int j = 0; j < Inputs.minTerms.size(); j++) {
+				res.append("| " + tmp[i][j] + " |     ");
+			}
+			res.append("\n");
+			for (int k = 0; k < Inputs.minTerms.size() * 2; k++) {
+				res.append("-----");
+			}
+			res.append("\n");
+		}
+		return res.toString();
 	}
 }
